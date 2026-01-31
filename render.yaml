@@ -2,7 +2,7 @@ services:
   - type: web
     name: wildlife-monitoring-ai
     env: python
-    buildCommand: pip install -r backend/requirements-prod.txt
+    buildCommand: cd backend && pip install -r requirements-prod.txt
     startCommand: cd backend && gunicorn app:app --bind 0.0.0.0:$PORT
     envVars:
       - key: FLASK_ENV
@@ -18,3 +18,4 @@ databases:
   - name: wildlife-db
     databaseName: wildlife
     user: wildlife_user
+
