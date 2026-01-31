@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered wildlife monitoring system for tracking and analyzing animal sightings">
+    <title>Wildlife Monitoring AI - Conservation Through Technology</title>
+    
+    <!-- Leaflet CSS for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🦁</span>
+                <h1>Wildlife Monitoring AI</h1>
+            </div>
+            <p class="tagline">Conservation Through Technology</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Upload Section -->
+            <section class="upload-section card">
+                <h2>📸 Report Wildlife Sighting</h2>
+                <div class="upload-container" id="uploadContainer">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">📤</div>
+                        <p class="upload-text">Drag & drop an image here or click to browse</p>
+                        <p class="upload-hint">Supported: JPG, PNG, GIF (Max 16MB)</p>
+                        <input type="file" id="fileInput" accept="image/*" hidden>
+                        <button class="btn btn-primary" id="browseBtn">Choose Image</button>
+                    </div>
+                    
+                    <!-- Image Preview -->
+                    <div class="preview-area" id="previewArea" style="display: none;">
+                        <img id="previewImage" alt="Preview">
+                        <button class="btn btn-secondary" id="clearBtn">Clear</button>
+                    </div>
+                </div>
+                
+                <!-- Location Input -->
+                <div class="location-section">
+                    <h3>📍 Location Information (Optional)</h3>
+                    <div class="form-grid">
+                        <input type="text" id="locationName" placeholder="Location name (e.g., Serengeti National Park)" class="input-field">
+                        <button class="btn btn-outline" id="getLocationBtn">📍 Use My Location</button>
+                    </div>
+                    <div class="form-grid">
+                        <input type="number" id="latitude" placeholder="Latitude" step="0.000001" class="input-field">
+                        <input type="number" id="longitude" placeholder="Longitude" step="0.000001" class="input-field">
+                    </div>
+                </div>
+                
+                <!-- Upload Button -->
+                <button class="btn btn-large btn-success" id="uploadBtn" disabled>
+                    🔍 Detect Wildlife
+                </button>
+                
+                <!-- Loading -->
+                <div class="loading" id="loadingIndicator" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Analyzing image with AI...</p>
+                </div>
+                
+                <!-- Results -->
+                <div class="detection-results" id="detectionResults" style="display: none;">
+                    <h3>✅ Detection Results</h3>
+                    <div id="resultsContent"></div>
+                </div>
+            </section>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                
+                <!-- Map Section -->
+                <section class="map-section card">
+                    <h2>🗺️ Sightings Map</h2>
+                    <div id="map"></div>
+                </section>
+
+                <!-- Statistics Section -->
+                <section class="stats-section card">
+                    <h2>📊 Species Statistics</h2>
+                    <div id="statsChart"></div>
+                    <div id="statsEmpty" style="display: none;">
+                        <p class="empty-state">No data yet. Upload an image to get started!</p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sightings Table -->
+            <section class="sightings-section card">
+                <div class="section-header">
+                    <h2>📋 Recent Sightings</h2>
+                    <button class="btn btn-outline btn-small" id="refreshBtn">🔄 Refresh</button>
+                </div>
+                <div class="table-container">
+                    <table class="sightings-table" id="sightingsTable">
+                        <thead>
+                            <tr>
+                                <th>Species</th>
+                                <th>Confidence</th>
+                                <th>Location</th>
+                                <th>Time</th>
+                                <th>Image</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sightingsBody">
+                            <tr>
+                                <td colspan="6" class="empty-state">No sightings recorded yet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Built with ❤️ for Wildlife Conservation | Powered by YOLOv8 AI</p>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+</body>
+</html>
